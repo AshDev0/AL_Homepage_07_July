@@ -1,0 +1,60 @@
+
+<div data-section-id="{{ section.id }}" data-section-type="hero-section" class="xxxxa">
+  <div class="main-hero-slider" id="Hero-{{ section.settings.id }}">
+    {%- for block in section.blocks -%}
+    <div class=" banner-slide">
+      <a href="{{ block.settings.main_url }}">
+        <img class="w-full lazyload banner-img" loading="lazy"
+           src="{{ block.settings.image | img_url: "master" }}"
+           data-src="{{ block.settings.image | img_url: "master" }}"
+           data-widths="[180, 360, 470, 600, 770, 970, 1060, 1280, 1512, 1728, 2048]"
+           data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+           data-sizes="auto" height="100" width="100"
+           alt="{{ block.settings.title | escape }}">
+      </a>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+ 
+{% schema %}
+{
+  "name": {
+    "en": "Hero Banner"
+  },
+  "class": "index-section index-section--flush hero-banner",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "Slides",
+      "name": "Banner Slides",
+    "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "main_url",
+      "label": "Main URL"
+    }
+  ]
+ }
+],
+  "presets": [
+    {
+      "name": {
+        "en": "Hero Banner"
+      },
+      "category": {
+        "en": "Image"
+
+      }
+    }
+  ]
+}
+{% endschema %}
+{% stylesheet %}
+ 
+{% endstylesheet %}

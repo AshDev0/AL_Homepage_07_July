@@ -1,0 +1,77 @@
+
+<div class="md:px-[46px] xs:px-[11px] md:pb-[92px] xs:pb-[49px] xs:pb-[49px]" {%- if section.settings.bg_color != blank -%}style="background-color: {{ section.settings.bg_color }}" {% endif %}>
+    {% if section.settings.title != blank %}
+        <div class=" text-right md:mb-[35px]">
+            <h2 class="md:pr-[38px] font-[Compacta] uppercase text-right lg:text-[45px] md:text-[30px] xs:text-[23px] xs:leading[44px] xs:mb-[15px] font-normal	md:leading-[62.1px]">{{ section.settings.title | escape }}</h2>
+        </div>
+      {% endif %}
+    <div class="collection-grid">
+        <ul class="flex flex-wrap justify-between xs:px-[15px] md:px-0">
+          {% for block in section.blocks %} 
+              <li class="relative m-0 box-border md:w-[15%] before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[#0006] before:opacity-50 hover:before:bg-[#bc6d95] xs:w-[calc(50%-11px)] xs:mb-[23px] md:mb-0">
+                  <a href="{{ block.settings.collection_url }}">
+                    {%- if block.settings.image != blank-%}
+                      {% assign img_url = block.settings.image | img_url: "master" %}
+                         <img class="lazyload" 
+                         src="{{ img_url }}"
+                         data-src="{{ img_url }}"
+                         data-widths="[720, 1080]"
+                         data-aspectratio="{{ img.aspect_ratio }}"
+                         data-sizes="auto">
+                      {% endif %}
+                    {%- if block.settings.name != blank-%}
+                       <h3 class="md:text-[45px] absolute font-[Compacta] text-[#f3f0eb] uppercase font-normal top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] w-full text-center xs:text-[34px] xs:leading-[43.84px]">{{ block.settings.name }}</h3>
+                    {% endif %}
+                  </a>
+              </li>
+          {% endfor %}
+         </ul>
+    </div>
+  </div>
+{% schema %}
+  {
+    "name": "Vibe Collections",
+    "class": "fadein",
+    "max_blocks": 6,
+    "settings": [
+      {
+        "type": "color",
+        "id": "bg_color",
+         "label": "Background Color"
+      },
+      {
+        "type": "text",
+        "id": "title",
+         "label": "Heading"
+      }
+    ],
+    "blocks":[
+      {
+        "name": "Collection",
+        "type": "collection",
+        "settings":[
+                  {
+                     "label": "Name",
+                     "type": "text",
+                     "id": "name"
+                  },
+                  {
+                     "label": "background Image",
+                     "type": "image_picker",
+                     "id": "image"
+                  },
+                  {
+                     "label": "Collection Url",
+                     "type": "url",
+                     "id": "collection_url"
+                  }
+        ]
+    }
+    ],
+    "presets":[
+      {
+          "name": "Vibe Collections"
+      }      
+    ]
+  }
+{% endschema %}

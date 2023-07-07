@@ -1,0 +1,52 @@
+<section id="new_slider_section">
+    <div class="new_slider_section  pt-[90px] pb-0 md:px-[30px] xs:py-[40px] xs:px-[20px] bg-[#f4f0ec]">
+      {% if section.settings.heading != blank %}
+        <h1 class="font-[Compacta] uppercase text-right lg:text-[45px] md:text-[30px] xs:text-[23px] xs:leading[43.8px] xs:mb-[15px]"> {{ section.settings.heading }}</h1>
+      {% endif%}
+        {% assign collection_main = collections[section.settings.collection] %}
+        <div class="slider-container">
+            <div class="new_slider">
+                {% for product in collection_main.products %}
+                <div class="new_slider_item px-[15px]">
+                    <div class="product_img after:content-['']">
+                        <img src="{{ product | img_url:"master" }}">
+                    </div>
+                    <div class="product_content xs:mt-[20px]">
+                        <ul class="vendor_info flex justify-between">
+                            <li class="xs:pr-[10px] sm:w-9/12	flex"><a class="xs:text-[15px] xs:leading-[normal] uppercase font-['compacta']" href="#">{{ product.vendor }}</a></li>
+                            <li><a class="" href="#">{{ product.price | money_with_currency }}</a></li>
+                        </ul>
+                        <p class="xs:text-[15px] capitalize  flex xs:mt-[5px] text-black">{{product.title | capitalize}}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "AL New Slider Section",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Slider Title"
+      },
+      {
+        "id": "collection",
+        "type": "collection",
+        "label": "Collections"
+      }
+    ],
+    "presets": [
+      {
+        "name": "AL New Slider Section",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,79 @@
+ <div class="md:px-[90px] xs:px-[10px]" {% if section.settings.bg != blank%} style="background-color: {{section.settings.bg}}" {% endif%}>
+  {% if section.settings.title != blank %}
+    <div class="text-center md:pt-[20px] md:mb-[35px] xs:mb-[15px]">
+      <h2 class="text-right font-[Compacta] md:text-[45px] md:leading-[62.1px] uppercase md:tracking-normal">{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+  {%- assign collection = collections[section.settings.collection] -%}
+  <ul class="flex flex-wrap justify-between	">
+    {% for product in collection.products limit: 8 %}
+      <li class="md:w-[22%] group relative md:mb-[50px] xs:w-[calc(50%-8px)]">
+        {% include 'product-card-grid-home', max_height: max_height, product: product, show_vendor: section.settings.show_vendor %}
+      </li>
+    {% endfor %}
+  </ul>
+<a class="md:h-[75px] bg-[#242d2d] text-white font-[Tungsten-Light] md:text-[32px] md:leading-[50px] uppercase mx-auto md:my-0 w-full md:max-w-[196px] flex justify-center items-center xs:h-[50px] max-w-[150px] xs:text-[25px] xs:leading-[30px] xs:mt-[50px]" href="{{ section.settings.shop_all_url }}">{{ section.settings.shop_all }}</a>
+</div> 
+{% schema %}
+  {
+    "name": "Item we Love",
+    "class": "index-section home featured-collection fadein",
+    "settings": [
+      {
+      "type": "color",
+      "id": "bg",
+      "label": "Section Background Color"
+      },
+    {
+      "type": "text",
+      "id": "title",
+      "label": {
+        "en": "Heading Desktop"
+      },
+      "default": {
+        "en": "Featured collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "title_mobile",
+      "label": {
+        "en": "Heading Mobile"
+      },
+      "default": {
+        "en": "Featured collection"
+      }
+    },
+    {
+      "type": "text",
+      "id": "shop_all",
+      "label": {
+        "en": "Shop All Button"
+      },
+      "default": {
+        "en": "Shop All"
+      }
+    },
+    {
+      "type": "text",
+      "id": "shop_all_url",
+      "label": {
+        "en": "Shop All URL"
+      }
+    },
+    {
+      "id": "collection",
+      "type": "collection",
+      "label":"Select Collection"
+    }
+    ],
+    "presets":[
+      {
+          "name": "Item we Love"
+      }      
+    ]
+  }
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}

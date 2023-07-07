@@ -1,0 +1,62 @@
+<section id="shop-by-vibe">
+    <div class="vibe-collection w-full pt-[74px] pb-[137px] px-[46px] bg-[#f4f0ec]">
+        <h1 class="text-[45px] leading-[55px] uppercase text-right font-compacta font-normal m-0 pr-[38px]">{{section.settings.heading}}</h1>
+        <div class="collection-grid mt-[71px]">
+            <ul class="flex justify-between flex-wrap ">
+                {% for block in section.blocks %}
+                <li class="w-[15%] box-border">
+                    <a href="#">
+                        <div class="group w-full h-fit ">
+                        <div class="image relative w-full overflow-hidden">
+                       <img class="w-full object-cover" src="{{block.settings.image | img_url:'master'}}" alt="" loading="lazy" />
+                       <div class="absolute w-full h-full bg-black top-0 left-0 bottom-0 right-0 flex items-center justify-center opacity-0 group-hover:opacity-20 transition-all duration-300"></div>
+                        </div>
+                       <h3 class="text-[26px] leading-[41.13px] text-[#f3f0eb] font-compacta font-normal uppercase absolute left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2">{{block.settings.col-heading}}</h3>
+                    </div>
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Shop by Vibe",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+                {
+                    "type": "text",
+                    "id": "heading",
+                    "label": "Section Title"
+                } 
+    ],
+    "blocks": [
+        {
+            "name": "Shop by Vibe",
+            "type": "shopbyvibe",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "image",
+                    "label": "Main Image"
+                },
+                {
+                    "type": "text",
+                    "id": "col-heading",
+                    "label": "Collection Heading"
+                }
+            ]
+        }
+
+    ],
+    "presets": [
+      {
+        "name": "Shop by Vibe",
+        "settings": {
+        }
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,80 @@
+<div product-selector="{{product.id}}" class="grid-view-item{% unless product.available %} grid-view-item--sold-out{% endunless %} product-card">
+  <a class="grid-view-item__link grid-view-item__image-container full-width-link" href="{{ product.url }}">
+    <span class="visually-hidden">{{ product.title }}</span>
+  </a>
+
+  {% capture img_id %}ProductCardImage-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {% capture wrapper_id %}ProductCardImageWrapper-{{ section.id }}-{{ product.id }}{% endcapture %}
+  {%- assign preview_image = product.featured_media.preview_image -%}
+  {%comment%}
+  {%- assign img_url = preview_image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%} {%endcomment%}
+{%- assign img_url = preview_image | img_url: "master" -%} 
+  {% unless preview_image == blank %}
+    {% include 'image-style', image: preview_image, height: max_height, wrapper_id: wrapper_id, img_id: img_id %}
+  {% endunless %}
+
+  <div class="relative" data-image-loading-animation>
+    <div {% comment%} id="{{ wrapper_id }}" {% endcomment%} class="">
+    <a class="" href="{{ product.url }}">
+      <div class="before:content[''] before:w-full before:h-full before:bg-[#ff45d6] before:absolute before:top-0 before:left-0 before:z-9 before:invisible before:opacity-0 before:ease-in-out before:transition-all group-hover:visible group-hover:opacity-100">
+        <img {% comment%} id="{{ img_id }} {% endcomment %}"
+              class="lazyload w-full max-w-full"
+              alt="{{ preview_image.alt }}"
+              data-src="{{ img_url }}"
+              src="{{ img_url }}" 
+              data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+              data-aspectratio="{{ preview_image.aspect_ratio }}"
+              data-sizes="auto"
+              data-image>
+      </div>
+    </a> 
+    </div>
+<form method="post" action="{{product.selected_or_first_available_variant.id}}" class=" absolute bottom-[40px] left-[50%] translate-x-[-50%]"> 
+  <input type="hidden" name="id" value="{{product.selected_or_first_available_variant.id}}" data-src="{{ preview_image | img_url: image_size, scale: 2 }}" data-title="{{ product.title }}" data-url="{{ product.url }}" />
+  <input type="submit" class="invisible opacity-0 add-cart btn md:w-[134px] md:h-[52px] text-[#fff] bg-[#242d2d] font-[Tungsten-Medium] font-medium md:text-[18px] md:leading-[24px] uppercase border-solid	border-1 border-black cursor-pointer md:px-[18px] md:py-[10px] text-center" value="Add to Bag" data-prod-id="{{product.selected_or_first_available_variant.id}}"/>
+</form>
+</div>
+  <noscript>
+    {% capture image_size %}{{ max_height }}x{{ max_height }}{% endcapture %}
+    <img class="grid-view-item__image" src="{{ preview_image | img_url: image_size, scale: 2 }}" alt="{{ preview_image.alt }}" style="max-width: {{ max_height | times: preview_image.aspect_ratio }}px;">
+  </noscript>
+{% if product %}
+  <div class="infoWrap md:mt-[50px]">
+{% endif %}
+  <div class="brand-title">
+    <ul class="vendor-wrapper flex flex-wrap justify-between">
+      {%assign is_vendor = false %}
+      {%- paginate pages by 999 -%}
+      {%- for p in pages -%}
+      {%assign page_title = p.title | downcase | replace: "-", " " %}
+      {%assign page_url = p.url | downcase | replace: " ", "-" %}
+      {%assign page_v = product.vendor | downcase %}
+      {%if page_v == page_title %}
+      <div class="h4 grid-view-item__title product-card__title" aria-hidden="true">
+      
+        <a href="{{ page_url }}" class="font-[Kepler] font-medium md:text-[15px] md:leading-[18px] uppercase text-black">{{product.vendor}}</a>
+        {%assign is_vendor = true %}
+
+      </div>
+      {%endif%}
+      {%- endfor -%}
+ 
+      {%- endpaginate -%}
+      {%unless is_vendor %}
+      <div class="h4 grid-view-item__title product-card__title" aria-hidden="true"><a href="{{ page_url }}" class="font-[Kepler] font-medium md:text-[15px] md:leading-[18px] uppercase text-black tracking-normal">{{product.vendor}}</a></div>
+      {%endunless%}
+      {% unless product.available %}
+        <p class="sold-out-text">Sold out</p>
+        {% else %}
+        {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+      {% endunless %}
+    </ul>
+    {% unless recom %}
+    {% endunless %}
+    <span class="text-black font-[Kepler] tracking-normal font-normal md:text-[15px] md:leading-[18px] text-center md:mt-[5px]" style="color:#000;">{{ product.title }}</span>
+  </div>      
+  {% if product %}
+  </div>
+  {% endif %}
+
+</div>
