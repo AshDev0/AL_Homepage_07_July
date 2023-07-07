@@ -10,10 +10,10 @@
 {%- endstyle -%}
 
 <div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
-  <div class="bg-[#E0E0E0]">
-    <div class="pt-[30px] pb-[50px]">
-      <h1 class="text-[72px] leading-[72px] text-center uppercase font-[Compacta] font-normal ">
-        <span class="hidden">{{ 'sections.collection_template.title' | t }}: </span>
+  <div class="collection-hero__inner page-width">
+    <div class="collection-hero__text-wrapper">
+      <h1 class="collection-hero__title">
+        <span class="visually-hidden">{{ 'sections.collection_template.title' | t }}: </span>
         {{- collection.title | escape -}}
       </h1>
 
@@ -25,15 +25,13 @@
     {%- if section.settings.show_collection_image and collection.image -%}
       <div class="collection-hero__image-container media gradient">
         <img
-          srcset="
-            {%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
+          srcset="{%- if collection.image.width >= 165 -%}{{ collection.image | image_url: width: 165 }} 165w,{%- endif -%}
             {%- if collection.image.width >= 360 -%}{{ collection.image | image_url: width: 360 }} 360w,{%- endif -%}
             {%- if collection.image.width >= 535 -%}{{ collection.image | image_url: width: 535 }} 535w,{%- endif -%}
             {%- if collection.image.width >= 750 -%}{{ collection.image | image_url: width: 750 }} 750w,{%- endif -%}
             {%- if collection.image.width >= 1070 -%}{{ collection.image | image_url: width: 1070 }} 1070w,{%- endif -%}
             {%- if collection.image.width >= 1500 -%}{{ collection.image | image_url: width: 1500 }} 1500w,{%- endif -%}
-            {{ collection.image | image_url }} {{ collection.image.width }}w
-          "
+            {{ collection.image | image_url }} {{ collection.image.width }}w"
           src="{{ collection.image | image_url: width: 750 }}"
           sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc(50vw - 130px), calc(50vw - 55px)"
           alt=""
@@ -42,21 +40,6 @@
         >
       </div>
     {%- endif -%}
-  </div>
-</div>
-
-<div class="w-full pt-[32px] bg-[#f4f0ec]">
-  <div class="container mx-auto">
-    <nav class="">
-      <ul class="flex items-center px-[57px]">
-        <li class="relative mr-[40px]">
-          <a href="#" class="text-[#465858] inline-block text-[25px] leading-normal font-[Kepler] font-light after:content-[''] after:absolute after:inline-block after:top-[50%] after:left-[50%] after:-translate-x-[50%] after:-translate-y-[50%] after:h-[6px] after:ml-[50px] after:w-[6px] after:border-r-2 after:border-b-2 after:-rotate-45 after:p-[3px] after:border-[#242d2d]">Home</a>
-        </li>
-        <li>
-          <a href="#" class="text-[#465858] text-[25px] leading-normal font-[Kepler] font-light">New</a>
-        </li>
-      </ul>
-    </nav>
   </div>
 </div>
 
