@@ -106,7 +106,7 @@ $('.owl_slider').owlCarousel({
 
 */
 
-$jquery(document).on('click','a#collection-url', function(e){
+jQuery(document).on('click','a#collection-url', function(e){
   e.preventDefault();
   var pageURL=$(this).attr('href');
   var curr_url = window.location.href;
