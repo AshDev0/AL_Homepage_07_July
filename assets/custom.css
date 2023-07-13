@@ -1,0 +1,11 @@
+span.active::after{
+    transform: rotate(-135deg);
+}
+
+
+#SortBy
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}

@@ -11,7 +11,7 @@
 }
 @font-face {
     font-family: 'Kepler';
-    src: url('./KeplerStd-Regular.ttf') format('truetype');
+    src: url('https://afternoonlight.com/cdn/shop/t/90/assets/KeplerStd-LightScnCapt.ttf') format('truetype');
     font-style: normal;
     font-display: swap;
 }
@@ -23,7 +23,7 @@
 }
 @font-face {
     font-family: 'Tungsten-Light';
-    src: url('./Tungsten-Light.ttf') format('truetype');
+    src: url('https://afternoonlight.com/cdn/shop/t/90/assets/Tungsten-Light.ttf') format('truetype');
     font-style: normal;
     font-display: swap;
 }
@@ -78,6 +78,19 @@
 .new_slider1 button:after,
 .new_slider1 button:before{
 display: none;
+}
+
+
+span.active::after{
+    transform: rotate(-135deg);
+}
+
+
+#SortBy
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 @media screen and (max-width: 767px){

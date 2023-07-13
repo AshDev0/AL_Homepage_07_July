@@ -9,7 +9,7 @@
   }
 {%- endstyle -%}
 
-<div class="collection-hero{% if section.settings.show_collection_image and collection.image %} collection-hero--with-image{% endif %} color-{{ section.settings.color_scheme }} gradient">
+<div class="p-0{% if section.settings.show_collection_image and collection.image %} {% endif %}">
   <div class="bg-[#E0E0E0]">
     <div class="pt-[30px] pb-[50px]">
       <h1 class="text-[72px] leading-[72px] text-center uppercase font-[Compacta] font-normal ">
@@ -18,7 +18,7 @@
       </h1>
 
       {%- if section.settings.show_collection_description -%}
-        <div class="collection-hero__description rte">{{ collection.description }}</div>
+        <div class="">{{ collection.description }}</div>
       {%- endif -%}
     </div>
 
@@ -50,10 +50,10 @@
     <nav class="">
       <ul class="flex items-center px-[57px]">
         <li class="relative mr-[40px]">
-          <a href="#" class="text-[#465858] inline-block text-[25px] leading-normal font-[Kepler] font-light after:content-[''] after:absolute after:inline-block after:top-[50%] after:left-[50%] after:-translate-x-[50%] after:-translate-y-[50%] after:h-[6px] after:ml-[50px] after:w-[6px] after:border-r-2 after:border-b-2 after:-rotate-45 after:p-[3px] after:border-[#242d2d]">Home</a>
+          <a href="#" class="text-[#465858] inline-block text-[25px] leading-normal font-[Kepler] font-light after:content-[''] after:absolute after:inline-block after:top-[50%] after:left-[50%] after:-translate-x-[50%] after:-translate-y-[50%] after:h-[6px] after:ml-[50px] after:w-[6px] after:border-r-2 after:border-b-2 after:-rotate-45 after:p-[3px] after:border-[#242d2d] hover:text-[#465858]">Home</a>
         </li>
         <li>
-          <a href="#" class="text-[#465858] text-[25px] leading-normal font-[Kepler] font-light">New</a>
+          <a href="#" class="text-[#465858] text-[25px] leading-normal font-[Kepler] font-light hover:text-[#465858]">New</a>
         </li>
       </ul>
     </nav>
