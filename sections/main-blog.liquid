@@ -20,7 +20,7 @@
   <div class="">
     <h1 class="title--primary">{{ blog.title | escape }}</h1>
 
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+    <div class="">
       {%- for article in blog.articles -%}
         <div class="blog-articles__article article">
           {%- render 'article-card',
