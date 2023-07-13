@@ -9,9 +9,8 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {{ 'output.css' | asset_url | stylesheet_tag }}
-   
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ 'custom.js' | asset_url }}" async="async"></script>
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -32,8 +31,9 @@
     {% endif %}
 
     {% render 'meta-tags' %}
-
+    {%- comment -%}
     <script src="{{ 'global.js' | asset_url }}" defer="defer"></script>
+    {%- endcomment -%}
     {{ content_for_header }}
 
     {%- liquid
@@ -256,7 +256,6 @@
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
       <li id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</li>
     </ul>
-
     <script>
       window.shopUrl = '{{ request.origin }}';
       window.routes = {
@@ -285,12 +284,12 @@
         playSlideshow: `{{ 'sections.slideshow.play_slideshow' | t }}`,
       }
     </script>
+{%- comment -%}
+  
 
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" type="text/javascript"></script>
-    <script src="{{ 'custom.js' | asset_url }}" async="async"></script>
-
+    {%- endcomment -%}
   </body>
 </html>
