@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-  
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -9,7 +8,6 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {{ 'output.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'custom.js' | asset_url }}" async="async"></script>
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
@@ -291,5 +289,6 @@
     {%- endif -%}
     {%- endcomment -%}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" type="text/javascript" defer="defer"></script>
+        <script src="{{ 'custom.js' | asset_url }}" async="async"></script>
   </body>
 </html>
