@@ -17,12 +17,12 @@
 {%- endstyle -%}
 
 {%- paginate blog.articles by 6 -%}
-  <div class="w-full flex justify-between">
+  <div class="w-full">
     <h1 class="title--primary">{{ blog.title | escape }}</h1>
 
     <div class="">
       {%- for article in blog.articles -%}
-        <div class="blog-articles__article article">
+        <div class="">
           {%- render 'article-card',
             article: article,
             media_height: section.settings.image_height,
