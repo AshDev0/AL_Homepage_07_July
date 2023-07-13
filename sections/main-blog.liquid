@@ -22,7 +22,7 @@
 
     <div class="w-full flex justify-between">
       {%- for article in blog.articles -%}
-        <div class="w-1/2">
+        <div class="w-full">
           {%- render 'article-card',
             article: article,
             media_height: section.settings.image_height,
