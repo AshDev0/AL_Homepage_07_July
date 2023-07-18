@@ -136,9 +136,9 @@
 
   <div class="w-full flex justify-between px-[20px] lg:px-[50px]">
     {{ 'component-facets.css' | asset_url | stylesheet_tag }}
-    {%- comment -%}
+    
     <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
-    {%- endcomment -%}
+    
     {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
       <aside
         aria-labelledby="verticalTitle"
