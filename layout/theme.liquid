@@ -8,7 +8,7 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     {{ 'output.css' | asset_url | stylesheet_tag }}
-    <script src="{{ 'jquery.min.js' | asset_url }}" defer type="text/javascript"></script>
+    <script src="{{ 'jquery.min.js' | asset_url }}" defer></script>
     {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
